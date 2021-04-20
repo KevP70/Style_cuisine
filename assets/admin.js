@@ -51,8 +51,3 @@ dressing_button.onclick = function() {
     bathroom.style.display = "none";
     dressing.style.display = "block";
 }
-
-document.getElementById("submit").onclick = function() {
-    document.getElementById("formBefore").submit();
-    document.getElementById("formAfter").submit();
-}

@@ -5,53 +5,33 @@
 {% block body %}
 
     <h1>Bienvenue dans l'espace Admin</h1>
-
-    {{ form_start(formTest) }}
-    {{ form_row(formTest.images) }}
-    <button type="submit">AJOUUTTETRR</button>
-    {{ form_end(formTest) }}
-
-
     <div class="buttonsForms">
         <div class="btns">
             <button id="myBtn">Ajouter images Avant/Après</button>
-            <div id="myModal" class="modalBeforeAfter">
-                <div class="modal-content-beforeAfter">
+            <div id="myModal" class="modal">
+                <div class="modal-content">
                     <div>
                         <span class="close">&times;</span>
                     </div>
-                    <div class="formsBeforeAfter">
-
-
-
-                        {{ form_start(formBefore, {'attr': {'id': 'formBefore'}}) }}
+                    {{ form_start(formBefore) }}
                         {{ form_row(formBefore.images) }}
-                        {{ form_row(formBefore.imagesAfter) }}
                         {{ form_row(formBefore.categories) }}
-                        <button type="submit">AJOUUTTETRR</button>
-                        {{ form_end(formBefore) }}
-                        {#
-                        {{ form_start(formAfter, {'attr': {'id': 'formAfter'}}) }}
-                            {{ form_row(formAfter.images) }}
-                            {{ form_row(formAfter.categories) }}
-                        {{ form_end(formAfter) }}
-                        #}
-                    </div>
-                    <button id="submit">Ajouter les images</button>
+                        <button type="submit">Ajouter l'image Avant</button>
+                    {{ form_end(formBefore) }}
                 </div>
             </div>
         </div>
         <div class="btns">
             <button id="myBtn2">Ajouter images en Vrac</button>
-            <div id="myModal2" class="modalRandom">
-                <div class="modal-content-random">
+            <div id="myModal2" class="modal">
+                <div class="modal-content">
                     <div>
                         <span class="close2">&times;</span>
                     </div>
                     {{ form_start(formRandom) }}
                         {{ form_row(formRandom.images) }}
                         {{ form_row(formRandom.categories) }}
-                    <button type="submit" class="btn">Ajouter l'image</button>
+                        <button type="submit">Ajouter l'image</button>
                     {{ form_end(formRandom) }}
                 </div>
             </div>
@@ -76,7 +56,7 @@
                         </tr>
                     </thead>
                     <tbody class="before-after">
-                        {% for kitchen in kitchenBefore %}
+                        {% for kitchen in KitchensBefore %}
                             <tr>
                                 <td>
                                     <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
@@ -86,10 +66,10 @@
                                 </td>
                             </tr>
                         {% endfor %}
-                        {% for kitchen in kitchenAfter %}
+                        {% for kitchen in KitchensAfter %}
                             <tr>
                                 <td>
-                                    <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
+                                    <img src="{{ vich_uploader_asset(kitchen, 'imageFile') }}" alt="">
                                 </td>
                                 <td>
                                     <button class="btn">Supprimer</button>
@@ -108,7 +88,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for kitchen in randomKitchen %}
+                        {% for kitchen in KitchensRandom %}
                             <tr>
                                 <td>
                                     <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
@@ -133,12 +113,21 @@
                             <th colspan="3">Images Avant/Après</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {% for Bathroom in randomBathroom %}
+                    <tbody class="before-after">
+                        {% for Bathroom in BathroomsBefore %}
                             <tr>
                                 <td>
                                     <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
-                                    <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
+                                </td>
+                                <td>
+                                    <button class="btn">Supprimer</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% for Bathroom in BathroomsAfter %}
+                            <tr>
+                                <td>
+                                    <img src="{{ vich_uploader_asset(Bathroom, 'imageFile') }}" alt="">
                                 </td>
                                 <td>
                                     <button class="btn">Supprimer</button>
@@ -157,7 +146,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for Bathroom in randomBathroom %}
+                        {% for Bathroom in BathroomsRandom %}
                             <tr>
                                 <td>
                                     <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
@@ -182,11 +171,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for Dressing in randomDressing %}
+                        {% for Dressing in DressingsBefore %}
                             <tr>
                                 <td>
-                                    <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">
-                                    <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">
+                                    <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
+                                </td>
+                                <td>
+                                    <button class="btn">Supprimer</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% for Dressing in DressingsAfter %}
+                            <tr>
+                                <td>
+                                    <img src="{{ vich_uploader_asset(Dressing, 'imageFile') }}" alt="">
                                 </td>
                                 <td>
                                     <button class="btn">Supprimer</button>
@@ -205,7 +203,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for Dressing in randomDressing %}
+                        {% for Dressing in DressingsRandom %}
                             <tr>
                                 <td>
                                     <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">

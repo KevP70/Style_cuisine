@@ -16,10 +16,7 @@ class ImageBeforeType extends AbstractType
     {
         $builder
             ->add('images', FileType::class, [
-                'label'=> 'Choisir votre image "Avants"',
-            ])
-            ->add('imagesAfter', FileType::class, [
-                'label'=> 'Choisir votre image "Avants"',
+                'label'=> 'Choisir votre image "Avant"',
             ])
             ->add('categories', EntityType::class, [
                 'class'  => Categories::class,
@@ -30,12 +27,11 @@ class ImageBeforeType extends AbstractType
         ;
     }
 
-    /*
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => ImageBefore::class,
         ]);
     }
-    */
 }
+ 

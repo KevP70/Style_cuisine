@@ -12,10 +12,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageAfterType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('images', FileType::class, [
+            ->add('imageFile', FileType::class, [
                 'label'=> 'Choisir votre image "Après"',
             ])
             ->add('categories', EntityType::class, [

@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\ImagesRandom;
 use App\Entity\ImageBefore;
 use App\Entity\ImageAfter;
-use App\Entity\ImageTest;
 use App\Form\ImageAfterType;
 use App\Form\ImageBeforeType;
 use App\Form\ImagesRandomType;
-use App\Form\ImageTestType;
+use App\Repository\ImageAfterRepository;
+use App\Repository\ImageBeforeRepository;
+use App\Repository\ImagesRandomRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,91 +22,80 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin")
      */
-    public function index(Request $request): Response
+    public function index(Request $request,
+                          EntityManagerInterface $entityManager,
+                          ImageBeforeRepository $imageBeforeRepository,
+                          ImageAfterRepository $imageAfterRepository,
+                          ImagesRandomRepository $imagesRandomRepository): Response
     {
+        //Add Image Random
         $imagesRandom = new ImagesRandom();
-        $imageBefore = new ImageBefore();
-        $imageAfter = new ImageAfter();
-        $imagTest = new ImageTest();
-
         $formRandom = $this->createForm(ImagesRandomType::class, $imagesRandom);
-        $formBefore = $this->createForm(ImageBeforeType::class);
-        $formAfter = $this->createForm(ImageAfterType::class, $imageAfter);
-
-
-        $formTest = $this->createForm(ImageTestType::class, $imagTest);
-
         $formRandom->handleRequest($request);
-        $formBefore->handleRequest($request);
-        $formAfter->handleRequest($request);
 
-
-        $formTest->handleRequest($request);
-
-
-
-
-
-
-        if ($formTest->isSubmitted() && $formTest->isValid()) {
+        if ($formRandom->isSubmitted() && $formRandom->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($imagTest);
+            $entityManager->persist($formRandom);
             $entityManager->flush();
             return $this->redirectToRoute('admin');
         }
 
-
-
-        if ($formBefore->isSubmitted() && $formBefore->isValid()) {
-            $imageBefore = $formBefore->get('images')->getData();
-            $imageAfter = $formBefore->get('imagesAfter');
-
-
-
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($imageBefore);
-            $entityManager->persist($imageAfter);
+        // Donc la je créer la premier image
+        $image = new ImageBefore();
+        $form = $this->createForm(ImageBeforeType::class, $image);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isSubmitted()) {
+            // Je lui set un ID
+            $image->setImageId(mt_rand(1, 900));
+            $entityManager->persist($image);
             $entityManager->flush();
-            return $this->redirectToRoute('admin');
+            // Redirection sur la page pour ajouter une seconde images
+            return $this->redirectToRoute('second_image', ['imageId' => $image->getImageId()]);
         }
-
-        if ($formAfter->isSubmitted() && $formAfter->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($imageAfter);
-            $entityManager->flush();
-            return $this->redirectToRoute('admin');
-        }
-
-        $randomKitchen = $this->getDoctrine()->getRepository(ImagesRandom::class)->findBy(array('categories' => 1));
-        $randomBathroom = $this->getDoctrine()->getRepository(ImagesRandom::class)->findBy(array('categories' => 2));
-        $randomDressing = $this->getDoctrine()->getRepository(ImagesRandom::class)->findBy(array('categories' => 3));
-
-        $KitchenBefore = $this->getDoctrine()->getRepository(ImageBefore::class)->findBy(array('categories' => 1));
-        $BathroomBefore = $this->getDoctrine()->getRepository(ImageBefore::class)->findBy(array('categories' => 2));
-        $DressingBefore = $this->getDoctrine()->getRepository(ImageBefore::class)->findBy(array('categories' => 3));
-
-        $KitchenAfter = $this->getDoctrine()->getRepository(ImageAfter::class)->findBy(array('categories' => 1));
-        $BathroomAfter = $this->getDoctrine()->getRepository(ImageAfter::class)->findBy(array('categories' => 2));
-        $DressingAfter = $this->getDoctrine()->getRepository(ImageAfter::class)->findBy(array('categories' => 3));
 
         return $this->render('admin/index.html.twig', [
-            'randomKitchen' => $randomKitchen,
-            'randomBathroom' => $randomBathroom,
-            'randomDressing' => $randomDressing,
-
-            'kitchenBefore' => $KitchenBefore,
-            'BathroomBefore' => $BathroomBefore,
-            'DressingBefore' => $DressingBefore,
-
-            'kitchenAfter' => $KitchenAfter,
-            'BathroomAfter' => $BathroomAfter,
-            'DressingAfter' => $DressingAfter,
-
             'formRandom' => $formRandom->createView(),
-            'formBefore' => $formBefore->createView(),
-            'formAfter' => $formAfter->createView(),
-            'formTest' => $formTest->createView(),
+            'formBefore' => $form->createView(),
+
+            'KitchensBefore' => $imageBeforeRepository->findBy(array('categories' => 1)),
+            'KitchensAfter' => $imageAfterRepository->findBy(array('categories' => 1)),
+            'KitchensRandom' => $imagesRandomRepository->findBy(array('categories' => 1)),
+
+            'BathroomsBefore' => $imageBeforeRepository->findBy(array('categories' => 2)),
+            'BathroomsAfter' => $imageAfterRepository->findBy(array('categories' => 2)),
+            'BathroomsRandom' => $imagesRandomRepository->findBy(array('categories' => 2)),
+
+            'DressingsBefore' => $imageBeforeRepository->findBy(array('categories' => 3)),
+            'DressingsAfter' => $imageAfterRepository->findBy(array('categories' => 3)),
+            'DressingsRandom' => $imagesRandomRepository->findBy(array('categories' => 3)),
+        ]);
+    }
+
+
+    /**
+     * @Route("/admin/{imageId}", name="second_image")
+     */
+    public
+    function secondImage(
+        ImageBefore $imageBefore,
+        Request $request,
+        EntityManagerInterface $entityManager
+    )
+    {
+        // AJout d'une seconde image
+        $imageAfter = new ImageAfter();
+        $formImageAfter = $this->createForm(ImageAfterType::class, $imageAfter);
+        $formImageAfter->handleRequest($request);
+        if ($formImageAfter->isSubmitted() && $formImageAfter->isSubmitted()) {
+            $imageAfter->setImageBefore($imageBefore);
+            $imageBefore->setImageAfter($imageAfter);
+            $entityManager->persist($imageAfter);
+            $entityManager->flush();
+            return $this->redirectToRoute('admin');
+        }
+        return $this->render('admin/second_image.html.twig', [
+            'formAfter' => $formImageAfter->createView(),
+            'imageBefore' => $imageBefore
         ]);
     }
 }

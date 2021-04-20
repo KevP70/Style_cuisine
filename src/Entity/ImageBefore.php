@@ -35,9 +35,19 @@ class ImageBefore
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imageId;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToOne(targetEntity=ImageAfter::class, cascade={"persist", "remove"})
+     */
+    private $imageAfter;
 
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="imageBefores")
@@ -45,11 +55,7 @@ class ImageBefore
      */
     private $categories;
 
-    /**
-     * @ORM\OneToOne(targetEntity=ImageAfter::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $imageAfter;
+
 
     public function getId(): ?int
     {
@@ -96,6 +102,34 @@ class ImageBefore
         return $this;
     }
 
+    public function getImageAfter(): ?ImageAfter
+    {
+        return $this->imageAfter;
+    }
+
+    public function setImageAfter(?ImageAfter $imageAfter): self
+    {
+        $this->imageAfter = $imageAfter;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageId()
+    {
+        return $this->imageId;
+    }
+
+    /**
+     * @param mixed $imageId
+     */
+    public function setImageId($imageId): void
+    {
+        $this->imageId = $imageId;
+    }
+
     public function getCategories(): ?Categories
     {
         return $this->categories;
@@ -108,15 +142,4 @@ class ImageBefore
         return $this;
     }
 
-    public function getImageAfter(): ?ImageAfter
-    {
-        return $this->imageAfter;
-    }
-
-    public function setImageAfter(ImageAfter $imageAfter): self
-    {
-        $this->imageAfter = $imageAfter;
-
-        return $this;
-    }
 }

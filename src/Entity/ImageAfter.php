@@ -16,28 +16,40 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class ImageAfter
 {
+
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id = null;
 
     /**
-     * @Vich\UploadableField(mapping="imageFile", fileNameProperty="name")
+     * @ORM\ManyToOne(targetEntity=ImageBefore::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ImageBefore $ImageBefore;
+
+    /**
+     * @Vich\UploadableField(mapping="imageFile", fileNameProperty="imageName")
      * @var File|null
      */
-    private $images;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
+    private $imageFile;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updatedAt;
+    private ?DateTimeInterface $updatedAt = null;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private ?string $imageName = '';
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private ?string $imageId = '';
 
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="imageAfters")
@@ -45,48 +57,110 @@ class ImageAfter
      */
     private $categories;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @return File|null
+     * @param int|null $id
+     * @return ImageAfter
      */
-    public function getImages(): ?File
+    public function setId(?int $id): ImageAfter
     {
-        return $this->images;
+        $this->id = $id;
+        return $this;
     }
 
-    public function setImages(?File $images = null): void
+    /**
+     * @return ImageBefore
+     */
+    public function getImageBefore(): ImageBefore
     {
-        $this->images = $images;
-        if ($this->images instanceof UploadedFile) {
+        return $this->ImageBefore;
+    }
+
+    /**
+     * @param ImageBefore $imageTest
+     * @return ImageAfter
+     */
+    public function setImageBefore(ImageBefore $ImageBefore): ImageAfter
+    {
+        $this->ImageBefore = $ImageBefore;
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if ($this->imageFile instanceof UploadedFile) {
             $this->updatedAt = new DateTime('now');
         }
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
+    /**
+     * @return DateTimeInterface|null
+     */
     public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(DateTimeInterface $updatedAt): self
+    /**
+     * @param DateTimeInterface|null $updatedAt
+     * @return ImageAfter
+     */
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): ImageAfter
     {
         $this->updatedAt = $updatedAt;
+        return $this;
+    }
 
+    /**
+     * @return string|null
+     */
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * @param string|null $imageName
+     * @return ImageAfter
+     */
+    public function setImageName(?string $imageName): ImageAfter
+    {
+        $this->imageName = $imageName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageId(): ?string
+    {
+        return $this->imageId;
+    }
+
+    /**
+     * @param string|null $imageId
+     * @return ImageAfter
+     */
+    public function setImageId(?string $imageId): ImageAfter
+    {
+        $this->imageId = $imageId;
         return $this;
     }
 
@@ -101,4 +175,6 @@ class ImageAfter
 
         return $this;
     }
+
 }
+

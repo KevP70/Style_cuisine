@@ -20,8 +20,6 @@
             Secteur Baume les dames, Rougemont, Villersexel
         </h1>
         <img src="{{ asset('build/images/slider/beautiful-shot-of-modern-house-kitchen.jpg') }}" alt="">
- <!--  <img src="{{ asset('build/images/slider/bathroom1336164_640.jpg') }}" alt="">
-        <img src="{{ asset('build/images/slider/closet-4696557_1280.jpg') }}" alt="">   -->
         <div id="last" onclick="ChangeSlide(-1)"><</div>
         <div id="next" onclick="ChangeSlide(1)">></div>
     </div>
@@ -94,20 +92,20 @@
                 <div class="frame">
                     <div class="before">
                         <h4>Avant</h4>
-                        {% for kitchen in kitchenBefore %}
+                        {% for kitchen in KitchensBefore %}
                         <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
                         {% endfor %}
                     </div>
                     <div class="after">
                         <h4>Après</h4>
-                        {% for kitchen in kitchenAfter %}
-                            <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
+                        {% for kitchen in KitchensAfter %}
+                            <img src="{{ vich_uploader_asset(kitchen, 'imageFile') }}" alt="">
                         {% endfor %}
                     </div>
                 </div>
             </div>
             <div class="otherimages">
-                {% for kitchen in randomKitchen %}
+                {% for kitchen in KitchensRandom %}
                     <div class="order">
                         <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
                     </div>
@@ -128,7 +126,7 @@
                 </div>
             </div>
             <div class="otherimages">
-                {% for Bathroom in randomBathroom %}
+                {% for Bathroom in BathroomsRandom %}
                     <div class="order">
                         <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
                     </div>
@@ -149,7 +147,7 @@
                 </div>
             </div>
             <div class="otherimages">
-                {% for Dressing in randomDressing %}
+                {% for Dressing in DressingsRandom %}
                     <div class="order">
                         <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">
                     </div>

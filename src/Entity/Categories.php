@@ -30,21 +30,21 @@ class Categories
     private $images_random;
 
     /**
-     * @ORM\OneToMany(targetEntity=ImageBefore::class, mappedBy="categories", orphanRemoval=true)
-     */
-    private $imageBefores;
-
-    /**
      * @ORM\OneToMany(targetEntity=ImageAfter::class, mappedBy="categories", orphanRemoval=true)
      */
     private $imageAfters;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ImageBefore::class, mappedBy="categories", orphanRemoval=true)
+     */
+    private $imageBefores;
 
 
     public function __construct()
     {
         $this->images_random = new ArrayCollection();
-        $this->imageBefores = new ArrayCollection();
         $this->imageAfters = new ArrayCollection();
+        $this->imageBefores = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,36 +95,6 @@ class Categories
     }
 
     /**
-     * @return Collection|ImageBefore[]
-     */
-    public function getImageBefores(): Collection
-    {
-        return $this->imageBefores;
-    }
-
-    public function addImageBefore(ImageBefore $imageBefore): self
-    {
-        if (!$this->imageBefores->contains($imageBefore)) {
-            $this->imageBefores[] = $imageBefore;
-            $imageBefore->setCategories($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImageBefore(ImageBefore $imageBefore): self
-    {
-        if ($this->imageBefores->removeElement($imageBefore)) {
-            // set the owning side to null (unless already changed)
-            if ($imageBefore->getCategories() === $this) {
-                $imageBefore->setCategories(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|ImageAfter[]
      */
     public function getImageAfters(): Collection
@@ -153,5 +123,34 @@ class Categories
 
         return $this;
     }
-}
 
+    /**
+     * @return Collection|ImageBefore[]
+     */
+    public function getImageBefores(): Collection
+    {
+        return $this->imageBefores;
+    }
+
+    public function addImageBefore(ImageBefore $imageBefore): self
+    {
+        if (!$this->imageBefores->contains($imageBefore)) {
+            $this->imageBefores[] = $imageBefore;
+            $imageBefore->setCategories($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImageBefore(ImageBefore $imageBefore): self
+    {
+        if ($this->imageBefores->removeElement($imageBefore)) {
+            // set the owning side to null (unless already changed)
+            if ($imageBefore->getCategories() === $this) {
+                $imageBefore->setCategories(null);
+            }
+        }
+
+        return $this;
+    }
+}
