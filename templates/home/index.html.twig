@@ -1,0 +1,226 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Style Cuisine{% endblock %}
+
+{% block body %}
+
+    <div class="navbar">
+        <img src="{{ asset('build/images/logo/style-removebg-preview.png') }}" alt="Logo Style Cuisine">
+        <nav>
+            <a href="#services">Nos services</a>
+            <a href="#realisations">Nos réalisations</a>
+            <a href="#contact">Nous contacter</a>
+        </nav>
+    </div>
+
+    <div id="slider">
+        <h1>
+            Depuis 1991, Style Cuisine aménage votre intérieur
+            <br>
+            Secteur Baume les dames, Rougemont, Villersexel
+        </h1>
+        <img src="{{ asset('build/images/slider/beautiful-shot-of-modern-house-kitchen.jpg') }}" alt="">
+ <!--  <img src="{{ asset('build/images/slider/bathroom1336164_640.jpg') }}" alt="">
+        <img src="{{ asset('build/images/slider/closet-4696557_1280.jpg') }}" alt="">   -->
+        <div id="last" onclick="ChangeSlide(-1)"><</div>
+        <div id="next" onclick="ChangeSlide(1)">></div>
+    </div>
+
+    <div class="icons-services">
+        <div class="rounded">
+            <img src="{{ asset('build/images/icons/icons8-pencil-drawing-80.png') }}" alt="pencil">
+        </div>
+        <div class="rounded">
+            <img src="{{ asset('build/images/icons/icons8-kitchen-room-96.png') }}" alt="kitchen">
+        </div>
+        <div class="rounded">
+            <img src="{{ asset('build/images/icons/icons8-construction-worker-80.png') }}" alt="worker">
+        </div>
+    </div>
+
+    <div id="services">
+        <div class="service">
+            <div class="description">
+                <h3>
+                    Devis gratuit et personnalisé
+                </h3>
+                <p>
+                    Chez Style Cuisine, vous accompagner dans la personnalisation de votre intérieur nous tiens à coeur.
+                    <br> <br>
+                    C'est pourquoi nous sommes à votre service pour vous conseiller dans vos projets et
+                    nous nous déplacerons gratuitement à votre domicile pour vous concocter un devis gratuit
+                    et totalement personnalisable selon vos envies, besoins et votre budget.
+                </p>
+            </div>
+        </div>
+        <div class="service">
+            <div class="description">
+                <h3>
+                    Installation de A à Z
+                </h3>
+                <p>
+
+                </p>
+            </div>
+        </div>
+       <div class="service">
+           <div class="description">
+               <h3>
+                   25 ans d'expériences
+               </h3>
+               <p>
+
+               </p>
+           </div>
+       </div>
+    </div>
+
+    <div id="realisations">
+        <div class="buttons">
+            <button class="kitchen" id="kitchen_button">
+                <h3>Nos Cuisines</h3>
+            </button>
+            <button class="bathroom"  id="bathroom_button">
+                <h3>Nos Salles de bains</h3>
+            </button>
+            <button class="dressing"  id="dressing_button">
+                <h3>Nos Placards</h3>
+            </button>
+        </div>
+
+
+        <div id="kitchen">
+            <div class="before-after">
+                <div class="frame">
+                    <div class="before">
+                        <h4>Avant</h4>
+                        {% for kitchen in kitchenBefore %}
+                        <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
+                        {% endfor %}
+                    </div>
+                    <div class="after">
+                        <h4>Après</h4>
+                        {% for kitchen in kitchenAfter %}
+                            <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="otherimages">
+                {% for kitchen in randomKitchen %}
+                    <div class="order">
+                        <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="bathroom" class="display">
+            <div class="before-after">
+                <div class="frame">
+                    <div class="before">
+                        <h4>Avant</h4>
+                        <img src="{{ asset('build/images/bathroom-1336164_640.23b4fc8d.jpg') }}" alt="">
+                    </div>
+                    <div class="after">
+                        <h4>Après</h4>
+                        <img src="{{ asset('build/images/bathroom-1336164_640.23b4fc8d.jpg') }}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="otherimages">
+                {% for Bathroom in randomBathroom %}
+                    <div class="order">
+                        <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="dressing" class="display">
+            <div class="before-after">
+                <div class="frame">
+                    <div class="before">
+                        <h4>Avant</h4>
+                        <img src="{{ asset('build/images/closet-4696557_1280.dbc36054.jpg') }}" alt="">
+                    </div>
+                    <div class="after">
+                        <h4>Après</h4>
+                        <img src="{{ asset('build/images/closet-4696557_1280.dbc36054.jpg') }}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="otherimages">
+                {% for Dressing in randomDressing %}
+                    <div class="order">
+                        <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="contact">
+        <h2>Contactez-Nous</h2>
+        <div class="info1">
+            <div class="email">
+                <h5><img src="{{ asset('build/images/icons/icons8-email-100.png') }}" alt="">Email</h5>
+                <p>epstylecuisinemesandans@orange.fr</p>
+            </div>
+            <div class="tel">
+                <h5><img src="{{ asset('build/images/icons/icons8-phone-48.png') }}" alt="">Téléphone</h5>
+                <p>03 81 84 10 35</p>
+                <p>06 84 81 11 32</p>
+            </div>
+            <div class="address">
+                <h5><img src="{{ asset('build/images/icons/icons8-home-address-48.png') }}" alt="">Adresse</h5>
+                <p>2 Rue de la Gougelle, 25680 Mésandans, France</p>
+            </div>
+        </div>
+        <div class="info2">
+            <div class="contactform">
+                <h3>Des questions? Envoyez-nous un message!</h3>
+                <form>
+                    <div class="first">
+                        <input type="text" name="name" id="name" placeholder="Nom" required>
+                        <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
+                    </div>
+                    <div class="second">
+                       <input type="email" name="email" id="email" placeholder="Email" required>
+                       <input type="tel" name="tel" id="tel" placeholder="Téléphone" required>
+                   </div>
+                    <div>
+                        <textarea placeholder="Votre message"></textarea>
+                    </div>
+                   <div class="submit">
+                       <input type="submit" value="Envoyer votre message">
+                   </div>
+                </form>
+                <div class="comments">
+                    <h3>Content(e) de nos préstations? Laissez-nous votre avis</h3>
+                    <div class="links">
+                        <a href="https://www.google.com/search?q=style+cuisine+mésandans&client=opera-gx&hs=QBH&ei=qRpjYIviENPlgwfk2aeQDA&oq=style+cuisine+mésandans&gs_lcp=Cgdnd3Mtd2l6EAMyBggAEBYQHjICCCY6BwgAEEcQsAM6CAgAEMcBEK8BOgIIADoICAAQCBANEB46CggAEMcBEK8BEA1Qp_IKWPD8CmCN_gpoAXACeACAAWiIAfkFkgEDOS4xmAEAoAEBqgEHZ3dzLXdpesgBCMABAQ&sclient=gws-wiz&ved=0ahUKEwjL2sWsg9jvAhXT8uAKHeTsCcIQ4dUDCAw&uact=5#lrd=0x479264ab12f6f525:0xd7dc45a88ff52ebe,1,,," target="_blank">
+                            <div class="google">Google avis </div>
+                        </a>
+                        <a href="https://www.facebook.com/pg/STYLE-Cuisine-481005812027454/reviews/?ref=page_internal" target="_blank">
+                            <div class="facebook">Facebook</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hours">
+                <h3>Venez nous retrouver dans notre magasin</h3>
+                <p><img src="{{ asset('build/images/icons/icons8-clock-64 (1).png') }}" alt="">Du Mardi au Samedi 9H30-12H00 / 14H00-19h00</p>
+                <div id="mapy"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <h2>STYLE CUISINE</h2>
+        <p>Un crédit vous engage et doit être remboursé.<br>
+        Vérifiez vos capacités de remboursement avant de vous engager.</p>
+        <p>2020 - Mentions légales - Réalisé par Kevin</p>
+    </footer>
+    
+{% endblock %}

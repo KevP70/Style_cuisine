@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ImagesRandom{% endblock %}
+
+{% block body %}
+    <h1>Edit ImagesRandom</h1>
+
+    {{ include('images_random/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('images_random_index') }}">back to list</a>
+
+    {{ include('images_random/_delete_form.html.twig') }}
+{% endblock %}

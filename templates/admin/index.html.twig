@@ -1,0 +1,225 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Espace Admin{% endblock %}
+
+{% block body %}
+
+    <h1>Bienvenue dans l'espace Admin</h1>
+
+    {{ form_start(formTest) }}
+    {{ form_row(formTest.images) }}
+    <button type="submit">AJOUUTTETRR</button>
+    {{ form_end(formTest) }}
+
+
+    <div class="buttonsForms">
+        <div class="btns">
+            <button id="myBtn">Ajouter images Avant/Après</button>
+            <div id="myModal" class="modalBeforeAfter">
+                <div class="modal-content-beforeAfter">
+                    <div>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="formsBeforeAfter">
+
+
+
+                        {{ form_start(formBefore, {'attr': {'id': 'formBefore'}}) }}
+                        {{ form_row(formBefore.images) }}
+                        {{ form_row(formBefore.imagesAfter) }}
+                        {{ form_row(formBefore.categories) }}
+                        <button type="submit">AJOUUTTETRR</button>
+                        {{ form_end(formBefore) }}
+                        {#
+                        {{ form_start(formAfter, {'attr': {'id': 'formAfter'}}) }}
+                            {{ form_row(formAfter.images) }}
+                            {{ form_row(formAfter.categories) }}
+                        {{ form_end(formAfter) }}
+                        #}
+                    </div>
+                    <button id="submit">Ajouter les images</button>
+                </div>
+            </div>
+        </div>
+        <div class="btns">
+            <button id="myBtn2">Ajouter images en Vrac</button>
+            <div id="myModal2" class="modalRandom">
+                <div class="modal-content-random">
+                    <div>
+                        <span class="close2">&times;</span>
+                    </div>
+                    {{ form_start(formRandom) }}
+                        {{ form_row(formRandom.images) }}
+                        {{ form_row(formRandom.categories) }}
+                    <button type="submit" class="btn">Ajouter l'image</button>
+                    {{ form_end(formRandom) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttonsCategories">
+        <div class="buttons">
+            <button class="kitchen" id="kitchen_button">Cuisines</button>
+            <button class="bathroom"  id="bathroom_button">Salles de bains</button>
+            <button class="dressing"  id="dressing_button">Placards</button>
+        </div>
+    </div>
+
+    <div id="kitchen">
+        <div class="tables">
+            <div class="tableImages">
+                <table>
+                    <thead>
+                        <tr class="titles">
+                            <th colspan="3">Images Avant/Après</th>
+                        </tr>
+                    </thead>
+                    <tbody class="before-after">
+                        {% for kitchen in kitchenBefore %}
+                            <tr>
+                                <td>
+                                    <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
+                                </td>
+                                <td>
+                                    <button class="btn">Supprimer</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% for kitchen in kitchenAfter %}
+                            <tr>
+                                <td>
+                                    <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
+                                </td>
+                                <td>
+                                    <button class="btn">Supprimer</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tableImages">
+                <table>
+                    <thead>
+                        <tr class="titles">
+                            <th colspan="3">Images en Vrac</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for kitchen in randomKitchen %}
+                            <tr>
+                                <td>
+                                    <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
+                                </td>
+                                <td>
+                                    <button class="btn">Supprimer</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="bathroom" class="display">
+        <div class="tables">
+            <div class="tableImages">
+                <table>
+                    <thead>
+                        <tr class="titles">
+                            <th colspan="3">Images Avant/Après</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for Bathroom in randomBathroom %}
+                            <tr>
+                                <td>
+                                    <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
+                                    <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
+                                </td>
+                                <td>
+                                    <button class="btn">Supprimer</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tableImages">
+                <table>
+                    <thead>
+                        <tr class="titles">
+                            <th colspan="3">Images en Vrac</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for Bathroom in randomBathroom %}
+                            <tr>
+                                <td>
+                                    <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
+                                </td>
+                                <td>
+                                    <button class="btn">Supprimer</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="dressing" class="display">
+        <div class="tables">
+            <div class="tableImages">
+                <table>
+                    <thead>
+                        <tr class="titles">
+                            <th colspan="3">Images Avant/Après</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for Dressing in randomDressing %}
+                            <tr>
+                                <td>
+                                    <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">
+                                    <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">
+                                </td>
+                                <td>
+                                    <button class="btn">Supprimer</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tableImages">
+                <table>
+                    <thead>
+                        <tr class="titles">
+                            <th colspan="3">Images en Vrac</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for Dressing in randomDressing %}
+                            <tr>
+                                <td>
+                                    <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">
+                                </td>
+                                <td>
+                                    <button class="btn">Supprimer</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

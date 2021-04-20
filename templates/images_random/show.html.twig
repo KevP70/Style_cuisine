@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ImagesRandom{% endblock %}
+
+{% block body %}
+    <h1>ImagesRandom</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ images_random.id }}</td>
+            </tr>
+            <tr>
+                <th>Image_name</th>
+                <td>{{ images_random.images }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ images_random.updatedAt ? images_random.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('images_random_index') }}">back to list</a>
+
+    <a href="{{ path('images_random_edit', {'id': images_random.id}) }}">edit</a>
+
+    {{ include('images_random/_delete_form.html.twig') }}
+{% endblock %}
