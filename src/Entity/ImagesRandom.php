@@ -30,9 +30,9 @@ class ImagesRandom
     private $images;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $image_name = '';
+    private $image_name;
 
     /**
      * @ORM\Column(type="datetime")

@@ -98,4 +98,15 @@ class AdminController extends AbstractController
             'imageBefore' => $imageBefore
         ]);
     }
+
+    /**
+     * @Route("/admin/delete/{id}", name="images_random_delete")
+     */
+    public function delete(ImagesRandom $imagesRandom): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($imagesRandom);
+        $entityManager->flush();
+        return $this->redirectToRoute('admin');
+    }
 }

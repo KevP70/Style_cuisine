@@ -3,7 +3,11 @@
 {% block title %}Style Cuisine{% endblock %}
 
 {% block body %}
-
+    {% for message in app.flashes('success') %}
+        <div class="sendSuccess" id="ok">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="navbar">
         <img src="{{ asset('build/images/logo/style-removebg-preview.png') }}" alt="Logo Style Cuisine">
         <nav>
@@ -19,9 +23,9 @@
             <br>
             Secteur Baume les dames, Rougemont, Villersexel
         </h1>
-        <img src="{{ asset('build/images/slider/beautiful-shot-of-modern-house-kitchen.jpg') }}" alt="">
-        <div id="last" onclick="ChangeSlide(-1)"><</div>
-        <div id="next" onclick="ChangeSlide(1)">></div>
+        <img src="{{ asset('build/images/slider/beautiful-shot-of-modern-house-kitchen.jpg') }}" alt="" id="slide">
+        <div id="last"><</div>
+        <div id="next">></div>
     </div>
 
     <div class="icons-services">
@@ -88,22 +92,30 @@
 
 
         <div id="kitchen">
+
+
+
             <div class="before-after">
+                {% for kitchen in KitchensBefore %}
                 <div class="frame">
                     <div class="before">
                         <h4>Avant</h4>
-                        {% for kitchen in KitchensBefore %}
+
                         <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
-                        {% endfor %}
+
                     </div>
                     <div class="after">
                         <h4>Après</h4>
-                        {% for kitchen in KitchensAfter %}
-                            <img src="{{ vich_uploader_asset(kitchen, 'imageFile') }}" alt="">
-                        {% endfor %}
+
+                            <img src="{{ vich_uploader_asset(kitchen.imageAfter, 'imageFile') }}" alt="">
+
                     </div>
                 </div>
+                {% endfor %}
             </div>
+
+
+
             <div class="otherimages">
                 {% for kitchen in KitchensRandom %}
                     <div class="order">
@@ -176,22 +188,22 @@
         <div class="info2">
             <div class="contactform">
                 <h3>Des questions? Envoyez-nous un message!</h3>
-                <form>
+                {{ form_start(contactForm) }}
                     <div class="first">
-                        <input type="text" name="name" id="name" placeholder="Nom" required>
-                        <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
+                        {{ form_row(contactForm.name) }}
+                        {{ form_row(contactForm.firstname) }}
                     </div>
                     <div class="second">
-                       <input type="email" name="email" id="email" placeholder="Email" required>
-                       <input type="tel" name="tel" id="tel" placeholder="Téléphone" required>
+                        {{ form_row(contactForm.phone) }}
+                        {{ form_row(contactForm.email) }}
                    </div>
                     <div>
-                        <textarea placeholder="Votre message"></textarea>
+                        {{ form_row(contactForm.message) }}
                     </div>
                    <div class="submit">
                        <input type="submit" value="Envoyer votre message">
                    </div>
-                </form>
+                {{ form_end(contactForm) }}
                 <div class="comments">
                     <h3>Content(e) de nos préstations? Laissez-nous votre avis</h3>
                     <div class="links">
@@ -218,7 +230,7 @@
         <h2>STYLE CUISINE</h2>
         <p>Un crédit vous engage et doit être remboursé.<br>
         Vérifiez vos capacités de remboursement avant de vous engager.</p>
-        <p>2020 - Mentions légales - Réalisé par Kevin</p>
+        <p>2020 - Mentions légales - <a href="#">Réalisé par Kevin</a></p>
     </footer>
     
 {% endblock %}
