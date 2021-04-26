@@ -58,11 +58,11 @@
                     <tbody class="before-after">
                         {% for kitchens in KitchensBefore %}
                             <tr>
-                                <td>
+                                <td class="imagesBA">
                                     <img src="{{ vich_uploader_asset(kitchens, 'images') }}" alt="">
                                     <img src="{{ vich_uploader_asset(kitchens.imageAfter, 'imageFile') }}" alt="">
                                 </td>
-                                <td>
+                                <td class="buttonDelete">
                                     <button class="btn">Supprimer</button>
                                 </td>
                             </tr>
@@ -88,7 +88,7 @@
                                 </td>
                             </tr>
                         {% endfor %}
-                    </tbody>S
+                    </tbody>
                 </table>
             </div>
         </div>

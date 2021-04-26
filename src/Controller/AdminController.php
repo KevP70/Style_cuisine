@@ -32,10 +32,9 @@ class AdminController extends AbstractController
         $imagesRandom = new ImagesRandom();
         $formRandom = $this->createForm(ImagesRandomType::class, $imagesRandom);
         $formRandom->handleRequest($request);
-
         if ($formRandom->isSubmitted() && $formRandom->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($formRandom);
+            $entityManager->persist($imagesRandom);
             $entityManager->flush();
             return $this->redirectToRoute('admin');
         }
@@ -106,6 +105,16 @@ class AdminController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($imagesRandom);
+        $entityManager->flush();
+        return $this->redirectToRoute('admin');
+    }
+    /**
+     * @Route("/admin/deleteBeforeAfter/{id}", name="deleteBeforeAfter")
+     */
+    public function deleteBeforeAfter(ImageBefore $imageBefore): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($imageBefore);
         $entityManager->flush();
         return $this->redirectToRoute('admin');
     }

@@ -139,6 +139,18 @@ h1{
   border: 5px solid #000;
   .before-after{
    display: flex;
+   flex-direction: column;
+   tr{
+    display: flex;
+    margin-bottom: 20px;
+    .buttonDelete{
+     display: flex;
+     align-items: center;
+    }
+    .imagesBA{
+    display: flex;
+    }
+   }
   }
   table{
    .titles{
