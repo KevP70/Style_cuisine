@@ -108,14 +108,4 @@ class AdminController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('admin');
     }
-    /**
-     * @Route("/admin/deleteBeforeAfter/{id}", name="deleteBeforeAfter")
-     */
-    public function deleteBeforeAfter(ImageBefore $imageBefore): Response
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($imageBefore);
-        $entityManager->flush();
-        return $this->redirectToRoute('admin');
-    }
 }

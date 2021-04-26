@@ -108,16 +108,7 @@
                             <tr>
                                 <td>
                                     <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
-                                </td>
-                                <td>
-                                    <button class="btn">Supprimer</button>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        {% for Bathroom in BathroomsAfter %}
-                            <tr>
-                                <td>
-                                    <img src="{{ vich_uploader_asset(Bathroom, 'imageFile') }}" alt="">
+                                    <img src="{{ vich_uploader_asset(Bathroom.imageAfter, 'imageFile') }}" alt="">
                                 </td>
                                 <td>
                                     <button class="btn">Supprimer</button>
@@ -142,7 +133,7 @@
                                     <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
                                 </td>
                                 <td>
-                                    <button class="btn">Supprimer</button>
+                                    <a href="{{ path('images_random_delete', {'id': Bathroom.id}) }}">Supprimer</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -165,16 +156,7 @@
                             <tr>
                                 <td>
                                     <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
-                                </td>
-                                <td>
-                                    <button class="btn">Supprimer</button>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        {% for Dressing in DressingsAfter %}
-                            <tr>
-                                <td>
-                                    <img src="{{ vich_uploader_asset(Dressing, 'imageFile') }}" alt="">
+                                    <img src="{{ vich_uploader_asset(Dressing.imageAfter, 'imageFile') }}" alt="">
                                 </td>
                                 <td>
                                     <button class="btn">Supprimer</button>
@@ -199,7 +181,7 @@
                                     <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">
                                 </td>
                                 <td>
-                                    <button class="btn">Supprimer</button>
+                                    <a href="{{ path('images_random_delete', {'id': Dressing.id}) }}">Supprimer</a>
                                 </td>
                             </tr>
                         {% endfor %}
