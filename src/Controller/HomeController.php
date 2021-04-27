@@ -60,6 +60,10 @@ class HomeController extends AbstractController
             'DressingsBefore' => $imageBeforeRepository->findBy(array('categories' => 3)),
             'DressingsAfter' => $imageAfterRepository->findBy(array('categories' => 3)),
             'DressingsRandom' => $imagesRandomRepository->findBy(array('categories' => 3)),
+
+            'SpecialsBefore' => $imageBeforeRepository->findBy(array('categories' => 4)),
+            'SpecialsAfter' => $imageAfterRepository->findBy(array('categories' => 4)),
+            'SpecialsRandom' => $imagesRandomRepository->findBy(array('categories' => 4)),
         ]);
     }
 }

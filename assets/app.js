@@ -23,23 +23,34 @@
     let kitchen_button = document.getElementById("kitchen_button");
     let bathroom_button = document.getElementById("bathroom_button");
     let dressing_button = document.getElementById("dressing_button");
+    let special_button = document.getElementById("special_button");
     let kitchen = document.getElementById("kitchen");
     let bathroom = document.getElementById("bathroom");
     let dressing = document.getElementById("dressing");
+    let special = document.getElementById("special");
     kitchen_button.onclick = function() {
         kitchen.style.display = "block";
         bathroom.style.display = "none";
         dressing.style.display = "none";
+        special.style.display = "none";
     }
     bathroom_button.onclick = function() {
         kitchen.style.display = "none";
         bathroom.style.display = "block";
         dressing.style.display = "none";
+        special.style.display = "none";
     }
     dressing_button.onclick = function() {
         kitchen.style.display = "none";
         bathroom.style.display = "none";
         dressing.style.display = "block";
+        special.style.display = "none";
+    }
+    special_button.onclick = function() {
+        kitchen.style.display = "none";
+        bathroom.style.display = "none";
+        dressing.style.display = "none";
+        special.style.display = "block";
     }
 
     let ok = document.getElementById("ok");
@@ -48,10 +59,10 @@
         , 3000);
 
 
-    let slide = ["/build/images/slider/beautiful-shot-of-modern-house-kitchen.jpg",
-                 "/build/images/slider/beautiful-shot-of-modern-house-kitchen.jpg",
-                 "/build/images/slider/bathroom-1336164_640.jpg",
-                 "/build/images/slider/closet-4696557_1280.jpg"];
+    let slide = ["/build/images/slider/Kitchen.jpg",
+                 "/build/images/slider/Kitchen.jpg",
+                 "/build/images/slider/Bathroom.jpg",
+                 "/build/images/slider/Special.jpg"];
     let i = 0;
     let slider = document.getElementById("slide");
     let last = document.getElementById("last");

@@ -23,7 +23,7 @@
             <br>
             Secteur Baume les dames, Rougemont, Villersexel
         </h1>
-        <img src="{{ asset('build/images/slider/beautiful-shot-of-modern-house-kitchen.jpg') }}" alt="" id="slide">
+        <img src="{{ asset('build/images/slider/Kitchen.jpg') }}" alt="" id="slide">
         <div id="last"><</div>
         <div id="next">></div>
     </div>
@@ -47,11 +47,7 @@
                     Devis gratuit et personnalisé
                 </h3>
                 <p>
-                    Chez Style Cuisine, vous accompagner dans la personnalisation de votre intérieur nous tiens à coeur.
-                    <br> <br>
-                    C'est pourquoi nous sommes à votre service pour vous conseiller dans vos projets et
-                    nous nous déplacerons gratuitement à votre domicile pour vous concocter un devis gratuit
-                    et totalement personnalisable selon vos envies, besoins ainsi que votre budget.
+
                 </p>
             </div>
         </div>
@@ -68,7 +64,7 @@
        <div class="service">
            <div class="description">
                <h3>
-                   25 ans d'expériences
+                   30 ans d'expériences
                </h3>
                <p>
 
@@ -88,34 +84,27 @@
             <button class="dressing"  id="dressing_button">
                 <h3>Nos Placards</h3>
             </button>
+            <button class="specials"  id="special_button">
+                <h3>Aménagements spéciaux</h3>
+            </button>
         </div>
 
 
         <div id="kitchen">
-
-
-
             <div class="before-after">
                 {% for kitchen in KitchensBefore %}
                 <div class="frame">
                     <div class="before">
                         <h4>Avant</h4>
-
                         <img src="{{ vich_uploader_asset(kitchen, 'images') }}" alt="">
-
                     </div>
                     <div class="after">
                         <h4>Après</h4>
-
-                            <img src="{{ vich_uploader_asset(kitchen.imageAfter, 'imageFile') }}" alt="">
-
+                        <img src="{{ vich_uploader_asset(kitchen.imageAfter, 'imageFile') }}" alt="">
                     </div>
                 </div>
                 {% endfor %}
             </div>
-
-
-
             <div class="otherimages">
                 {% for kitchen in KitchensRandom %}
                     <div class="order">
@@ -126,16 +115,18 @@
         </div>
         <div id="bathroom" class="display">
             <div class="before-after">
-                <div class="frame">
-                    <div class="before">
-                        <h4>Avant</h4>
-                        <img src="{{ asset('build/images/bathroom-1336164_640.23b4fc8d.jpg') }}" alt="">
+                {% for Bathroom in BathroomsBefore %}
+                    <div class="frame">
+                        <div class="before">
+                            <h4>Avant</h4>
+                            <img src="{{ vich_uploader_asset(Bathroom, 'images') }}" alt="">
+                        </div>
+                        <div class="after">
+                            <h4>Après</h4>
+                            <img src="{{ vich_uploader_asset(Bathroom.imageAfter, 'imageFile') }}" alt="">
+                        </div>
                     </div>
-                    <div class="after">
-                        <h4>Après</h4>
-                        <img src="{{ asset('build/images/bathroom-1336164_640.23b4fc8d.jpg') }}" alt="">
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <div class="otherimages">
                 {% for Bathroom in BathroomsRandom %}
@@ -147,16 +138,18 @@
         </div>
         <div id="dressing" class="display">
             <div class="before-after">
-                <div class="frame">
-                    <div class="before">
-                        <h4>Avant</h4>
-                        <img src="{{ asset('build/images/closet-4696557_1280.dbc36054.jpg') }}" alt="">
+                {% for Dressing in DressingsBefore %}
+                    <div class="frame">
+                        <div class="before">
+                            <h4>Avant</h4>
+                            <img src="{{ vich_uploader_asset(Dressing, 'images') }}" alt="">
+                        </div>
+                        <div class="after">
+                            <h4>Après</h4>
+                            <img src="{{ vich_uploader_asset(Dressing.imageAfter, 'imageFile') }}" alt="">
+                        </div>
                     </div>
-                    <div class="after">
-                        <h4>Après</h4>
-                        <img src="{{ asset('build/images/closet-4696557_1280.dbc36054.jpg') }}" alt="">
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <div class="otherimages">
                 {% for Dressing in DressingsRandom %}
@@ -166,6 +159,33 @@
                 {% endfor %}
             </div>
         </div>
+
+
+        <div id="special" class="display">
+            <div class="before-after">
+                {% for special in SpecialsBefore %}
+                    <div class="frame">
+                        <div class="before">
+                            <h4>Avant</h4>
+                            <img src="{{ vich_uploader_asset(special, 'images') }}" alt="">
+                        </div>
+                        <div class="after">
+                            <h4>Après</h4>
+                            <img src="{{ vich_uploader_asset(special.imageAfter, 'imageFile') }}" alt="">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="otherimages">
+                {% for special in SpecialsRandom %}
+                    <div class="order">
+                        <img src="{{ vich_uploader_asset(special, 'images') }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
     </div>
 
     <div id="contact">

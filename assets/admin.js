@@ -33,21 +33,32 @@ span2.onclick = function() {
 var kitchen_button = document.getElementById("kitchen_button");
 var bathroom_button = document.getElementById("bathroom_button");
 var dressing_button = document.getElementById("dressing_button");
+var special_button = document.getElementById("special_button");
 var kitchen = document.getElementById("kitchen");
 var bathroom = document.getElementById("bathroom");
 var dressing = document.getElementById("dressing");
+var special = document.getElementById("special");
 kitchen_button.onclick = function() {
     kitchen.style.display = "block";
     bathroom.style.display = "none";
     dressing.style.display = "none";
+    special.style.display = "none";
 }
 bathroom_button.onclick = function() {
     kitchen.style.display = "none";
     bathroom.style.display = "block";
     dressing.style.display = "none";
+    special.style.display = "none";
 }
 dressing_button.onclick = function() {
     kitchen.style.display = "none";
     bathroom.style.display = "none";
     dressing.style.display = "block";
+    special.style.display = "none";
+}
+special_button.onclick = function() {
+    kitchen.style.display = "none";
+    bathroom.style.display = "none";
+    dressing.style.display = "none";
+    special.style.display = "block";
 }
