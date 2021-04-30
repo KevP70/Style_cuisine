@@ -19,7 +19,7 @@ a{
  text-transform: none;
 }
 
-@media screen and (min-width: 769px){
+@media screen and (min-width: 1500px){
  h1{
   font-size: 40px;
  }
@@ -87,9 +87,10 @@ a{
      form{
       width: 100%;
       height: 100%;
+      font-size: 20px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      text-align: center;
       justify-content: space-between;
       button{
        width: 100%;
@@ -215,6 +216,205 @@ a{
  }
 }
 
+
+@media (min-width: 768px) and (max-width: 1500px){
+ h1{
+  font-size: 40px;
+ }
+ .header{
+  .buttonsForms{
+   display: flex;
+   justify-content: space-around;
+   width: 100%;
+   height: 50px;
+   .btns{
+    width: 300px;
+    height: 100%;
+    #myBtn,
+    #myBtn2{
+     width: 100%;
+     height: 100%;
+     background-color: #ff3635;
+     color: #fff;
+     font-size: 20px;
+     box-shadow: 10px 10px 10px #000;
+     transition: all 0.3s;
+     cursor: pointer;
+     border-radius: 5px;
+     &:hover {
+      transform: translateY(-5px);
+      transition: all 0.3s;
+      box-shadow: 1px 23px 29px 22px rgba(0,0,0,0.75);
+      font-size: 22px;
+     }
+    }
+    .modal {
+     display: none;
+     position: fixed;
+     z-index: 1;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     background-color: rgb(0,0,0);
+     background-color: rgba(0,0,0,0.4);
+     .modal-content {
+      background-color: #f0f0f0;
+      margin: 15% auto;
+      border: 2px solid #c5c5c5;
+      width: 300px;
+      height: 150px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      .close,
+      .close2{
+       color: #aaa;
+       float: right;
+       font-size: 40px;
+       font-weight: bold;
+       &:hover,
+       :focus{
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+       }
+      }
+     }
+     form{
+      width: 100%;
+      height: 100%;
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      justify-content: space-between;
+      button{
+       width: 100%;
+       height: 30px;
+       background-color: #ff3635;
+       color: #fff;
+       cursor: pointer;
+       border-radius: 5px;
+      }
+     }
+    }
+   }
+  }
+  .buttonsCategories{
+   width: 100%;
+   height: 50px;
+   margin-top: 50px;
+   display: flex;
+   justify-content: center;
+   .buttons{
+    width: 800px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    button{
+     width: 200px;
+     background-color: #ff3635;
+     color: #fff;
+     box-shadow: 10px 10px 10px #000;
+     transition: all 0.3s;
+     cursor: pointer;
+     border-radius: 5px;
+     font-size: 18px;
+     &:hover {
+      transform: translateY(-5px);
+      transition: all 0.3s;
+      box-shadow: 1px 23px 29px 22px rgba(0,0,0,0.75);
+      font-size: 20px;
+     }
+    }
+   }
+  }
+ }
+
+ .tables{
+  margin-top: 50px;
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  .tableImages{
+   width: 50%;
+   height: 100%;
+   display: flex;
+   justify-content: space-around;
+   table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    thead{
+     .titles{
+      font-size: 30px;
+     }
+    }
+    .before-after{
+     .imagesBA{
+      display: flex;
+      border: 2px solid #000;
+      border-radius: 0 5px 5px 0;
+      td{
+       display: flex;
+       img{
+        width: 50%;
+        height: 100%;
+       }
+       a{
+        width: 100%;
+        height: 100%;
+        background-color: #ff3635;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        display: flex;
+        align-items: center;
+        &:hover{
+         box-shadow: inset 10px -10px 20px 0px #000000;
+        }
+       }
+      }
+     }
+    }
+    .imagesRandom{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     .imagesR{
+      display: flex;
+      border: 2px solid #000;
+      border-radius: 5px;
+      width: 45%;
+      td{
+       display: flex;
+       img{
+        width: 100%;
+        height: 100%;
+       }
+       a{
+        width: 100%;
+        height: 100%;
+        background-color: #ff3635;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        display: flex;
+        align-items: center;
+        &:hover{
+         box-shadow: inset 10px -10px 20px 0px #000000;
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
+
+
 @media (min-width: 300px) and (max-width: 768px) {
  body{
   margin: 0;
@@ -287,9 +487,10 @@ a{
      form {
       width: 100%;
       height: 100%;
+      font-size: 20px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      text-align: center;
       justify-content: space-between;
 
       button {
@@ -328,47 +529,79 @@ a{
   }
  }
 
- .tables {
+ .tables{
   margin-top: 50px;
-  width: 90%;
+  max-width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
-  .tableImages {
-   height: auto;
-   table {
-    width: 100%;
-    height: auto;
-    .titles {
-     height: 30px;
-    }
-    .imagesRandom{
-     width: 80%;
-     height: auto;
-     border: 1px solid #000;
-     td:first-child{
-      width: 75%;
-      img{
-       width: 100%;
-      }
-     }
-     a{
-      width: 100%;
-      height: 100%;
+  justify-content: center;
+  .tableImages{
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: space-around;
+   table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    thead{
+     .titles{
+      font-size: 30px;
      }
     }
-    .before-after {
-     .imagesBA {
-      border: 1px solid #000;
-      .buttonDelete {
+    .before-after{
+     .imagesBA{
+      display: flex;
+      border: 2px solid #000;
+      border-radius: 0 5px 5px 0;
+      td{
+       display: flex;
+       img{
+        width: 50%;
+        height: 100%;
+       }
        a{
         width: 100%;
         height: 100%;
+        background-color: #ff3635;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        display: flex;
+        align-items: center;
+        &:hover{
+         box-shadow: inset 10px -10px 20px 0px #000000;
+        }
        }
       }
+     }
+    }
+    .imagesRandom{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     .imagesR{
+      display: flex;
+      border: 2px solid #000;
+      border-radius: 5px;
+      width: 45%;
       td{
+       display: flex;
        img{
-        width: 45%;
+        width: 100%;
+        height: 100%;
+       }
+       a{
+        width: 100%;
+        height: 100%;
+        background-color: #ff3635;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        display: flex;
+        align-items: center;
+        &:hover{
+         box-shadow: inset 10px -10px 20px 0px #000000;
+        }
        }
       }
      }
@@ -376,6 +609,7 @@ a{
    }
   }
  }
+
 }
 
 

@@ -23,7 +23,7 @@ class ContactType extends AbstractType
                 'label' => false,
                 'attr' => ['placeholder' => 'Prénom'],
             ])
-            ->add('phone', IntegerType::class, [
+            ->add('phone', TextType::class, [
                 'label' => false,
                 'attr' => ['placeholder' => 'Téléphone'],
             ])

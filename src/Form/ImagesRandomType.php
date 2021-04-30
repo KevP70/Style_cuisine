@@ -16,7 +16,7 @@ class ImagesRandomType extends AbstractType
     {
         $builder
             ->add('images', FileType::class, [
-                'label'=> false,
+                'label'=> 'Choisir votre image',
             ])
             ->add('categories', EntityType::class, [
                 'class'  => Categories::class,
